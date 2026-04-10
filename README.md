@@ -11,6 +11,13 @@ To use it in your own scripts, just load it as module, to make the function avai
 Import-Module "Create-Menu" -Force
 ```
 
+### without installing
+
+```ps1
+New-Module -Name "Create-Menu TUI" -ScriptBlock ([Scriptblock]::Create((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/BananaAcid/CreateMenuPS/refs/heads/main/Create-Menu/Create-Menu.ps1"))) | Out-Null
+# enables New-SelectionMenu (not the Create-Menu alias)
+```
+
 ## Usage
 
 ```ps1
