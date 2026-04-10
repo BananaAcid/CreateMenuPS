@@ -330,6 +330,11 @@ Function New-SelectionMenu {
             }
             else {
                 $retBuffer += Invoke-Command -ScriptBlock { param($Selection, $SelectionValue, $MenuOptions, $MenuOptionsInput, $esc, $CL) # supply usable variables
+
+                    # in module fix
+                    try { $sbStr = Get-Variable -Name "Block" -Scope 1 -ValueOnly ; $Block = [scriptblock]::Create($sbStr) } 
+                    catch { }
+                    
                     Invoke-Command -ScriptBlock $Block *>&1 -OutVariable Lines | Out-Null
                     $retBuffer += ConvertTo-CreateMenuAnsiColorString $Lines -ForegroundColor $ForegroundColor  # manual color
 
@@ -395,6 +400,11 @@ Function New-SelectionMenu {
 
                 if ($null -ne $FilterCallback) {
                     $MenuOptions,$Selection,$CellValue = Invoke-Command -ScriptBlock { param($CellValue, $Current, $CurrentValue, $Selection, $SelectionValue, $MenuOptions, $MenuOptionsInput, $esc, $CL, $Row, $Column)
+                        
+                        # in module fix
+                        try { $sbStr = Get-Variable -Name "FilterCallback" -Scope 1 -ValueOnly ; $FilterCallback = [scriptblock]::Create($sbStr) } 
+                        catch { }
+
                         $CellValue = . $FilterCallback
                         
                        Return $MenuOptions, $Selection, $CellValue
@@ -560,8 +570,13 @@ Function New-SelectionMenu {
         if ($SelectionCallback -ne $Null) {
             # return new MenuOptions, if you want
             $ret,$sel,$res = Invoke-Command -ScriptBlock { param($Selection, $SelectionValue, $MenuOptions, $MenuOptionsInput, $KeyInput, $esc, $CL)
-                $res = . $SelectionCallback
                 
+                # in module fix, replace wiht localized script block
+                try { $sbStr = Get-Variable -Name "SelectionCallback" -Scope 1 -ValueOnly ; $SelectionCallback = [scriptblock]::Create($sbStr) } 
+                catch { }
+                
+                $res = . $SelectionCallback
+
                 Return $MenuOptions, $Selection, $res
             } -ArgumentList $Selection, $MenuOptions[$Selection], $MenuOptions, $MenuOptionsInput, $KeyInput, $esc, $CL
 
