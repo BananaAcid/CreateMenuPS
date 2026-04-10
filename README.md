@@ -8,7 +8,7 @@ Shows strings as a table to be selectable by navigating with arrow keys, in Powe
 To use it in your own scripts, just load it as module, to make the function available
 
 ```ps1
-Import-Module CreateMenu -Force
+Import-Module "Create-Menu" -Force
 ```
 
 ## Usage
