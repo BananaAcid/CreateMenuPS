@@ -25,7 +25,7 @@ Create-Menu [-MenuOptions] <String[]> [[-Title] <Object>] [[-Selected] <Int32>] 
 | `-Footer` | `Null\|ScriptBlock\|String` | Takes a string or a scriptblock. |
 | `-SelectionCallback` | `Null\|ScriptBlock` | If you want to trigger something on selection or a key, or change the $MenuOptions/$Selection, return $False to exit. [1] |
 | `-Columns` | `"Auto"\|Integer` | Define how many columns should be shown (default: "Auto"). |
-| `-MaximumColumnWidth` | `"Auto"\|Integer` | The maximum amount of chars in a cell should be displayed, if to large, '...' will be appended. |
+| `-MaximumColumnWidth` | `"Auto"\|Integer` | The maximum amount of chars in a cell should be displayed. |
 | `-ShowCurrentSelection` | `Boolean` | Shows the current selection text in full length in the console title (default: $False). |
 | `-PassThrou` | `SwitchParameter` | Without, will output the index of the selection, otherwise the selected string (default: $False). |
 | `-ReturnObject` | `SwitchParameter` | Returns index, string, options array, and item object (higher priority than PassThrou). |
