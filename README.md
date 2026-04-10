@@ -31,7 +31,7 @@ Alias: `Create-Menu`
 | `-ShowCurrentSelection` | `Boolean` | Shows the current selection text in full length in the console title (default: $False). |
 | `-PassThrou` | `SwitchParameter` | Without, will output the index of the selection, otherwise the selected string (default: $False). |
 | `-ReturnObject` | `SwitchParameter` | Returns index, string, options array, and item object (higher priority than PassThrou). |
-| `-ForegroundColor` | `ConsoleColor` | Color for the selection (default: Black). |
+| `-ForegroundColor` | `[Console]::ForegroundColor\|ConsoleColor` | Color for the selection (default: [Console]::ForegroundColor). |
 | `-ForegroundColorSelection` | `ConsoleColor` | Color for the selection (default: Black). |
 | `-BackgroundColorSelection` | `ConsoleColor` | Color for the selection (default: Cyan). |
 | `-ForegroundColorTitle` | `ConsoleColor` | Color for the title (default: Cyan). |

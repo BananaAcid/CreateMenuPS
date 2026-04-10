@@ -52,7 +52,7 @@ Function New-SelectionMenu {
         .PARAMETER ReturnObject
             Returns Selection index, SelectionValue string, MenuOptions string[] of maybe modified items, MenuOptionsInput string[] of input strings, Items object of {"Name" maybe modified,"Index","Input" originial string}  -- has a higher priority then PassThrou
         .PARAMETER ForegroundColor
-            Value: <Black|ConsoleColor>
+            Value: <[Console]::ForegroundColor|ConsoleColor>
             Color for the selection (default: Black)
         .PARAMETER ForegroundColorSelection
             Value: <Black|ConsoleColor>
@@ -232,7 +232,7 @@ Function New-SelectionMenu {
         [Parameter(ValueFromPipeline=$False,Mandatory=$False)][switch]$PassThrou = $False,
         [Parameter(ValueFromPipeline=$False,Mandatory=$False)][switch]$ReturnObject = $False,
         
-        [Parameter(ValueFromPipeline=$False,Mandatory=$False)][Alias("c")][ConsoleColor]$ForegroundColor = [ConsoleColor]::Black,
+        [Parameter(ValueFromPipeline=$False,Mandatory=$False)][Alias("c")][ConsoleColor]$ForegroundColor = [Console]::ForegroundColor,
         [Parameter(ValueFromPipeline=$False,Mandatory=$False)][Alias("cs")][ConsoleColor]$ForegroundColorSelection = [ConsoleColor]::Black,
         [Parameter(ValueFromPipeline=$False,Mandatory=$False)][Alias("csb")][ConsoleColor]$BackgroundColorSelection = [ConsoleColor]::Cyan,
         [Parameter(ValueFromPipeline=$False,Mandatory=$False)][Alias("ct")][ConsoleColor]$ForegroundColorTitle = [ConsoleColor]::Yellow,
