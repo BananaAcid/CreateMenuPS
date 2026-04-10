@@ -1,4 +1,4 @@
-Function Create-Menu {
+Function New-SelectionMenu {
     <#
         .SYNOPSIS
             Shows strings as a table to be selectable by navigating with arrow keys
@@ -17,7 +17,7 @@ Function Create-Menu {
         .PARAMETER Title
             Value: <Null|ScriptBlock|String>
 
-            Takes a string or a scriptblock, use $global:varname to link to Title, Footer or SelectionCallback (available vars: $Selection, $SelectionValue, $MenuOptions, $MenuOptionsInput, $global:*)
+            Takes a string or a scriptblock, use $global:varname to link to Title, Footer or SelectionCallback (available vars: $Selection, $SelectionValue, $MenuOptions, $MenuOptionsInput, $esc, $CL, $global:*)
         .PARAMETER Selected
             Value: <Null|Integer>
 
@@ -25,7 +25,7 @@ Function Create-Menu {
         .PARAMETER Footer
             Value: <Null|ScriptBlock|String>
 
-            Takes a string or a scriptblock (available vars: $Selection, $SelectionValue, $MenuOptions, $MenuOptionsInput, $global:*)
+            Takes a string or a scriptblock (available vars: $Selection, $SelectionValue, $MenuOptions, $MenuOptionsInput, $esc, $CL, $global:*) 
         .PARAMETER SelectionCallback
             Value: <Null|ScriptBlock>
 
@@ -322,7 +322,7 @@ Function Create-Menu {
         return $MenuListing, $Columns, $RowQty
     }
 
-    Function New-TextBlock ($Block, $BlockName, $ForegroundColor = -1) { # $host.UI.RawUI.ForegroundColor // (Get-Host).UI.RawUI.*
+    Function New-TextBlock ($Block, $BlockName, $ForegroundColor = -1, $Selection, $MenuOptions, $MenuOptionsInput, $esc, $CL) {
         $retBuffer = ""
         if ($Block) {
             if ($Block -is [String]) {
@@ -384,7 +384,7 @@ Function Create-Menu {
 
         # generate output
 
-        $outputBuffer += New-TextBlock $Title "title-block" $ForegroundColorTitle
+        $outputBuffer += New-TextBlock $Title "title-block" $ForegroundColorTitle  $Selection $MenuOptions $MenuOptionsInput $esc $CL
 
         # output selections
         For ($i=0; $i -lt $RowQty; $i++) {
@@ -422,7 +422,7 @@ Function Create-Menu {
             }
         }
 
-        $outputBuffer += New-TextBlock $Footer "footer-block" $ForegroundColorFooter
+        $outputBuffer += New-TextBlock $Footer "footer-block" $ForegroundColorFooter   $Selection $MenuOptions $MenuOptionsInput $esc $CL
 
 
         $outputBuffer += " " # prevents line jumping
@@ -619,11 +619,11 @@ Function ConvertTo-CreateMenuAnsiColorString {
         $styleSequence = $Styles | ForEach-Object { "$esc[{0}m" -f $ansiStyles[$_] }
     }
 
-    if ($fgColor -and $bgColor) {
+    if ("$fgColor" -and "$bgColor") {
         return "$styleSequence$esc[38;5;{0};48;5;{1}m{2}$esc[0m" -f $fgColor, $bgColor, $InputString
-    } elseif ($fgColor) {
+    } elseif ("$fgColor") {
         return "$styleSequence$esc[38;5;{0}m{1}$esc[0m" -f $fgColor, $InputString
-    } elseif ($bgColor) {
+    } elseif ("$bgColor") {
         return "$styleSequence$esc[48;5;{0}m{1}$esc[0m" -f $bgColor, $InputString
     } elseif ($Styles) {
         return "$styleSequence$InputString$esc[0m"

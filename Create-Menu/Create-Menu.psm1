@@ -1,3 +1,5 @@
 . $PSScriptRoot\Create-Menu.ps1
 
-Export-ModuleMember -Function 'Create-Menu'
+New-Alias -Name "Create-Menu" -Value "New-SelectionMenu"
+
+Export-ModuleMember -Function 'New-SelectionMenu' -Alias 'Create-Menu'

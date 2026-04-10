@@ -14,8 +14,10 @@ Import-Module "Create-Menu" -Force
 ## Usage
 
 ```ps1
-Create-Menu [-MenuOptions] <String[]> [[-Title] <Object>] [[-Selected] <Int32>] [[-Footer] <Object>] [[-SelectionCallback] <ScriptBlock>] [[-Columns] <String>] [[-MaximumColumnWidth] <String>] [[-ShowCurrentSelection] <Boolean>] [-PassThrou] [-ReturnObject] [[-ForegroundColor] {color names}] [[-ForegroundColorSelection] {color names}] [[-BackgroundColorSelection] {color names}] [[-ForegroundColorTitle] {color names}] [[-ForegroundColorFooter] {color names}] [-CleanHost] [-ClearHost] [[-FilterCallback] <Object>] [<CommonParameters>]
+New-SelectionMenu [-MenuOptions] <String[]> [[-Title] <Object>] [[-Selected] <Int32>] [[-Footer] <Object>] [[-SelectionCallback] <ScriptBlock>] [[-Columns] <String>] [[-MaximumColumnWidth] <String>] [[-ShowCurrentSelection] <Boolean>] [-PassThrou] [-ReturnObject] [[-ForegroundColor] {color names}] [[-ForegroundColorSelection] {color names}] [[-BackgroundColorSelection] {color names}] [[-ForegroundColorTitle] {color names}] [[-ForegroundColorFooter] {color names}] [-CleanHost] [-ClearHost] [[-FilterCallback] <Object>] [<CommonParameters>]
 ```
+Alias: `Create-Menu`
+
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
